@@ -1,8 +1,7 @@
 package com.coursespring.springas.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import org.hibernate.boot.registry.selector.spi.StrategyCreator;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -16,7 +15,9 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant instant;
+
 
     @ManyToOne
     @JoinColumn(name = "client_id")
